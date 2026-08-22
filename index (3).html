@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Azhar — Data Analyst &amp; Python Automation</title>
+<meta name="description" content="Muhammad Azhar — Data Analyst, Python Automation &amp; Selenium developer. Portfolio, skills and projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A1120;
+    --bg-panel:#0E1A2B;
+    --bg-panel-2:#0E2A3D;
+    --line:#1E3A52;
+    --teal:#2DD4BF;
+    --teal-soft:#7FEAE0;
+    --amber:#F5B84E;
+    --amber-soft:#F7D8A0;
+    --text:#E7EEF2;
+    --text-dim:#93A8B8;
+    --text-faint:#5E7688;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--teal); color:#04201c; }
+
+  h1,h2,h3{ font-family:'Space Grotesk',sans-serif; margin:0; }
+  .mono{ font-family:'JetBrains Mono',monospace; }
+
+  a{ color:inherit; }
+
+  .bg-grid{
+    position:fixed; inset:0; z-index:-2;
+    background-image:
+      linear-gradient(rgba(30,58,82,0.35) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30,58,82,0.35) 1px, transparent 1px);
+    background-size:44px 44px;
+    mask-image: radial-gradient(ellipse 80% 60% at 60% 0%, black 40%, transparent 90%);
+  }
+  .bg-glow{
+    position:fixed; top:-200px; right:-200px; width:700px; height:700px;
+    background:radial-gradient(circle, rgba(45,212,191,0.15), transparent 70%);
+    z-index:-1; pointer-events:none;
+  }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 32px; }
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(10,17,32,0.75);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:68px;
+  }
+  .brand{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px; display:flex; align-items:center; gap:8px;}
+  .brand .dot{ width:8px; height:8px; border-radius:50%; background:var(--teal); box-shadow:0 0 12px var(--teal); }
+  .navlinks{ display:flex; gap:32px; font-size:14.5px; color:var(--text-dim); }
+  .navlinks a{ text-decoration:none; transition:color .2s; }
+  .navlinks a:hover{ color:var(--teal-soft); }
+  .navlinks .cta{
+    color:var(--bg); background:var(--teal); padding:8px 16px; border-radius:8px; font-weight:600;
+  }
+  .menu-btn{ display:none; background:none; border:1px solid var(--line); color:var(--text); border-radius:8px; padding:8px 10px; cursor:pointer; }
+
+  /* HERO */
+  .hero{ padding:96px 0 80px; position:relative; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--teal); color:var(--teal-soft);
+    padding:6px 14px; border-radius:20px; font-size:12.5px; font-weight:600;
+    letter-spacing:1px; text-transform:uppercase; background:rgba(45,212,191,0.06);
+    margin-bottom:28px;
+  }
+  .eyebrow .pulse{ width:7px; height:7px; border-radius:50%; background:var(--teal); animation:pulse 1.8s infinite; }
+  @keyframes pulse{ 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:.4; transform:scale(1.4);} }
+
+  .hero h1{
+    font-size:clamp(40px, 6vw, 68px); font-weight:700; letter-spacing:-1.5px;
+    background:linear-gradient(90deg, #fff, #CFEFEA);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero .role{
+    margin-top:14px; font-size:clamp(18px,2.4vw,24px); color:var(--teal-soft); font-weight:600;
+    font-family:'Space Grotesk',sans-serif;
+  }
+  .hero p.lead{
+    margin-top:20px; max-width:560px; color:var(--text-dim); font-size:16.5px;
+  }
+  .hero-actions{ margin-top:36px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 22px; border-radius:9px; font-weight:600; font-size:14.5px;
+    text-decoration:none; cursor:pointer; border:1px solid transparent; transition:transform .15s, box-shadow .15s;
+  }
+  .btn-primary{ background:var(--teal); color:#04201c; }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 8px 24px rgba(45,212,191,0.25); }
+  .btn-ghost{ border-color:var(--line); color:var(--text); }
+  .btn-ghost:hover{ border-color:var(--teal); color:var(--teal-soft); }
+
+  /* TERMINAL SIGNATURE */
+  .hero-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center; }
+  .terminal{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.4);
+  }
+  .term-head{
+    display:flex; align-items:center; gap:8px; padding:12px 16px;
+    background:var(--bg-panel-2); border-bottom:1px solid var(--line);
+  }
+  .term-dot{ width:11px; height:11px; border-radius:50%; }
+  .term-body{
+    padding:20px 20px 24px; font-family:'JetBrains Mono',monospace; font-size:13.5px; min-height:210px;
+    color:#B9CDD9;
+  }
+  .term-body .prompt{ color:var(--teal-soft); }
+  .term-body .out{ color:var(--text-faint); }
+  .term-body .ok{ color:var(--teal); }
+  .caret{ display:inline-block; width:8px; height:15px; background:var(--teal); vertical-align:middle; animation:blink 1s step-end infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  /* SECTIONS */
+  section{ padding:80px 0; border-top:1px solid var(--line); }
+  .kicker{
+    font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--amber-soft);
+    letter-spacing:2px; text-transform:uppercase; margin-bottom:10px;
+  }
+  .section-title{ font-size:clamp(28px,4vw,38px); margin-bottom:44px; }
+
+  /* ABOUT */
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+  .about-grid p{ color:var(--text-dim); font-size:16px; margin-bottom:16px; }
+  .fact-list{ list-style:none; padding:0; margin:0; display:grid; gap:14px; }
+  .fact-list li{
+    display:flex; justify-content:space-between; padding:14px 18px;
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:10px; font-size:14.5px;
+  }
+  .fact-list li span:first-child{ color:var(--text-faint); }
+  .fact-list li span:last-child{ color:var(--text); font-weight:600; font-family:'JetBrains Mono',monospace; }
+
+  /* SKILLS */
+  .skills-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:20px; }
+  .skill-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:24px;
+    transition:border-color .2s, transform .2s;
+  }
+  .skill-card:hover{ border-color:var(--teal); transform:translateY(-4px); }
+  .skill-card .icon{ font-size:22px; margin-bottom:14px; }
+  .skill-card h3{ font-size:17px; margin-bottom:8px; }
+  .skill-card p{ color:var(--text-dim); font-size:14px; margin:0; }
+  .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .tag{ font-family:'JetBrains Mono',monospace; font-size:12px; padding:4px 10px; border-radius:12px; border:1px solid var(--line); color:var(--text-dim); }
+
+  /* PROJECTS */
+  .projects-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; }
+  .project-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; display:flex; flex-direction:column;
+  }
+  .project-thumb{
+    height:130px; display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--text-faint);
+    background:
+      repeating-linear-gradient(135deg, rgba(45,212,191,0.06) 0 2px, transparent 2px 14px),
+      var(--bg-panel-2);
+    border-bottom:1px solid var(--line);
+  }
+  .project-body{ padding:22px; flex:1; display:flex; flex-direction:column; }
+  .project-body h3{ font-size:18px; margin-bottom:8px; }
+  .project-body p{ color:var(--text-dim); font-size:14px; flex:1; }
+  .project-body .tags{ margin-top:16px; }
+  .project-link{ display:inline-block; margin-top:16px; font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--teal-soft); text-decoration:none; }
+  .project-link:hover{ text-decoration:underline; }
+  .projects-banner{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.35);
+  }
+  .projects-banner svg{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+  .placeholder-note{
+    margin-top:44px; padding:16px 20px; border:1px dashed var(--line); border-radius:10px;
+    color:var(--text-faint); font-size:13.5px; font-family:'JetBrains Mono',monospace;
+  }
+
+  /* EDUCATION */
+  .timeline{ position:relative; padding-left:28px; }
+  .timeline::before{ content:''; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--line); }
+  .tl-item{ position:relative; padding-bottom:32px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:''; position:absolute; left:-28px; top:4px; width:14px; height:14px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--teal);
+  }
+  .tl-item h3{ font-size:18px; }
+  .tl-item .meta{ color:var(--amber-soft); font-family:'JetBrains Mono',monospace; font-size:13px; margin:6px 0 8px; }
+  .tl-item p{ color:var(--text-dim); font-size:14.5px; margin:0; }
+
+  /* CONTACT */
+  .contact-box{
+    background:linear-gradient(135deg, var(--bg-panel), var(--bg-panel-2));
+    border:1px solid var(--line); border-radius:20px; padding:56px 40px; text-align:center;
+  }
+  .contact-box h2{ font-size:clamp(26px,4vw,36px); margin-bottom:12px; }
+  .contact-box p{ color:var(--text-dim); max-width:480px; margin:0 auto 32px; }
+  .contact-links{ display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+
+  footer{ padding:32px 0; text-align:center; color:var(--text-faint); font-size:13px; border-top:1px solid var(--line); }
+  footer a{ color:var(--teal-soft); text-decoration:none; }
+
+  @media (max-width:860px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .about-grid{ grid-template-columns:1fr; }
+    .navlinks{ display:none; }
+    .menu-btn{ display:block; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span>Muhammad Azhar</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact" class="cta">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="pulse"></span>Open to Freelance &amp; Entry-Level Roles</div>
+      <h1>Muhammad Azhar</h1>
+      <div class="role">Data Analyst &middot; Python Automation &middot; Selenium</div>
+      <p class="lead">I turn raw data into decisions — building Python scripts, automated pipelines, and data analysis workflows. Currently sharpening full-stack AI skills at NexSkill, Lahore.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <div class="terminal">
+      <div class="term-head">
+        <span class="term-dot" style="background:#F45B69"></span>
+        <span class="term-dot" style="background:#F5B84E"></span>
+        <span class="term-dot" style="background:#2DD4BF"></span>
+        <span class="mono" style="margin-left:8px; color:var(--text-faint); font-size:12.5px;">azhar@portfolio</span>
+      </div>
+      <div class="term-body" id="termBody"></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="kicker">// about</div>
+      <h2 class="section-title">Who I am</h2>
+      <p>I'm a data-focused developer from Lahore, Pakistan, building practical skills in Python, data analysis, and automation. I enjoy taking messy data and unreliable manual processes and turning them into clean, repeatable systems.</p>
+      <p>I'm currently completing a 6-month Full-Stack AI program at NexSkill, and looking for freelance projects or entry-level roles where I can apply data analysis, scripting, and web automation to real problems.</p>
+    </div>
+    <ul class="fact-list">
+      <li><span>Location</span><span>Lahore, Pakistan</span></li>
+      <li><span>Focus</span><span>Data Science &amp; Analysis</span></li>
+      <li><span>Automation</span><span>Python + Selenium</span></li>
+      <li><span>Currently</span><span>NexSkill — Full-Stack AI</span></li>
+      <li><span>Availability</span><span>Freelance / Entry-Level</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="kicker">// skills</div>
+    <h2 class="section-title">What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="icon">📊</div>
+        <h3>Data Analysis</h3>
+        <p>Cleaning, exploring, and visualizing datasets to surface insights that support decisions.</p>
+        <div class="tags"><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Excel</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="icon">🐍</div>
+        <h3>Python Development</h3>
+        <p>Writing clean, reusable scripts for data processing and backend logic.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">APIs</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="icon">🤖</div>
+        <h3>Web Automation</h3>
+        <p>Automating browser tasks and data collection with Selenium-driven scripts.</p>
+        <div class="tags"><span class="tag">Selenium</span><span class="tag">Web Scraping</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="icon">🧠</div>
+        <h3>AI / ML Foundations</h3>
+        <p>Building foundational machine learning knowledge through the NexSkill program.</p>
+        <div class="tags"><span class="tag">Machine Learning</span><span class="tag">AI</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="icon">🗄️</div>
+        <h3>Databases</h3>
+        <p>Querying and structuring data for analysis-ready use.</p>
+        <div class="tags"><span class="tag">SQL</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="icon">📈</div>
+        <h3>Reporting</h3>
+        <p>Turning analysis into clear, readable summaries and visuals.</p>
+        <div class="tags"><span class="tag">Dashboards</span><span class="tag">Charts</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="kicker">// projects</div>
+    <h2 class="section-title">Selected work</h2>
+    <div class="projects-banner">
+      <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a code editor window next to a data chart">
+        <defs>
+          <linearGradient id="panelGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0E2A3D"/>
+            <stop offset="100%" stop-color="#0E1A2B"/>
+          </linearGradient>
+          <linearGradient id="barGrad" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#2DD4BF"/>
+            <stop offset="100%" stop-color="#7FEAE0"/>
+          </linearGradient>
+        </defs>
+
+        <rect x="0" y="0" width="900" height="340" fill="none"/>
+
+        <!-- Code editor window -->
+        <g>
+          <rect x="40" y="40" width="430" height="260" rx="14" fill="url(#panelGrad)" stroke="#1E3A52" stroke-width="1.5"/>
+          <rect x="40" y="40" width="430" height="34" rx="14" fill="#0E2A3D" stroke="#1E3A52" stroke-width="1.5"/>
+          <circle cx="60" cy="57" r="5" fill="#F45B69"/>
+          <circle cx="78" cy="57" r="5" fill="#F5B84E"/>
+          <circle cx="96" cy="57" r="5" fill="#2DD4BF"/>
+          <text x="240" y="61" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#5E7688">analyze.py</text>
+
+          <text x="62" y="105" font-family="JetBrains Mono, monospace" font-size="13" fill="#7FEAE0">import</text>
+          <text x="118" y="105" font-family="JetBrains Mono, monospace" font-size="13" fill="#E7EEF2">pandas as pd</text>
+
+          <text x="62" y="130" font-family="JetBrains Mono, monospace" font-size="13" fill="#7FEAE0">df</text>
+          <text x="80" y="130" font-family="JetBrains Mono, monospace" font-size="13" fill="#E7EEF2"> = pd.read_csv(</text>
+          <text x="210" y="130" font-family="JetBrains Mono, monospace" font-size="13" fill="#F5B84E">"sales.csv"</text>
+          <text x="290" y="130" font-family="JetBrains Mono, monospace" font-size="13" fill="#E7EEF2">)</text>
+
+          <text x="62" y="155" font-family="JetBrains Mono, monospace" font-size="13" fill="#5E7688"># clean + group data</text>
+
+          <text x="62" y="180" font-family="JetBrains Mono, monospace" font-size="13" fill="#E7EEF2">df.dropna(inplace=True)</text>
+          <text x="62" y="205" font-family="JetBrains Mono, monospace" font-size="13" fill="#E7EEF2">summary = df.groupby(</text>
+          <text x="62" y="230" font-family="JetBrains Mono, monospace" font-size="13" fill="#F5B84E">    "region"</text>
+          <text x="150" y="230" font-family="JetBrains Mono, monospace" font-size="13" fill="#E7EEF2">).sum()</text>
+
+          <text x="62" y="260" font-family="JetBrains Mono, monospace" font-size="13" fill="#2DD4BF">✓</text>
+          <text x="80" y="260" font-family="JetBrains Mono, monospace" font-size="13" fill="#B9CDD9">report generated</text>
+        </g>
+
+        <!-- Data chart panel -->
+        <g>
+          <rect x="495" y="40" width="365" height="260" rx="14" fill="url(#panelGrad)" stroke="#1E3A52" stroke-width="1.5"/>
+          <text x="520" y="72" font-family="JetBrains Mono, monospace" font-size="12" fill="#5E7688">// region_summary.chart</text>
+
+          <line x1="520" y1="250" x2="835" y2="250" stroke="#1E3A52" stroke-width="1.5"/>
+          <line x1="520" y1="100" x2="520" y2="250" stroke="#1E3A52" stroke-width="1.5"/>
+
+          <rect x="545" y="180" width="34" height="70" rx="4" fill="url(#barGrad)" opacity="0.55"/>
+          <rect x="600" y="140" width="34" height="110" rx="4" fill="url(#barGrad)" opacity="0.75"/>
+          <rect x="655" y="100" width="34" height="150" rx="4" fill="url(#barGrad)"/>
+          <rect x="710" y="160" width="34" height="90" rx="4" fill="url(#barGrad)" opacity="0.7"/>
+          <rect x="765" y="120" width="34" height="130" rx="4" fill="url(#barGrad)" opacity="0.9"/>
+
+          <circle cx="562" cy="175" r="3" fill="#F5B84E"/>
+          <circle cx="617" cy="135" r="3" fill="#F5B84E"/>
+          <circle cx="672" cy="95" r="3" fill="#F5B84E"/>
+          <circle cx="727" cy="155" r="3" fill="#F5B84E"/>
+          <circle cx="782" cy="115" r="3" fill="#F5B84E"/>
+          <polyline points="562,175 617,135 672,95 727,155 782,115" fill="none" stroke="#F5B84E" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.7"/>
+        </g>
+      </svg>
+    </div>
+    <div class="placeholder-note">// A snapshot of the kind of work I do — cleaning data with Python and Pandas, then turning it into readable summaries and charts.</div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="kicker">// education</div>
+    <h2 class="section-title">Learning path</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <h3>Full-Stack AI Course — Batch 12</h3>
+        <div class="meta">NexSkill, Arfa Software Technology Park, Lahore &middot; 6 months</div>
+        <p>Building practical skills across Python, data analysis, automation, and applied AI/ML — with a focus on freelance-ready, real-world projects.</p>
+      </div>
+      <div class="tl-item">
+        <h3>Self-Directed Learning</h3>
+        <div class="meta">Ongoing</div>
+        <p>Independently studying data science and automation tools, applying concepts through hands-on scripts and small projects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <h2>Let's work together</h2>
+      <p>Open to freelance projects and entry-level opportunities in data analysis, Python automation, and AI/ML.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:ch.azhar3457@gmail.com">Email Me</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/muhammad-azhar-95a918426" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/azhararain8012A" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="https://www.fiverr.com/azhar_devs" target="_blank" rel="noopener">Fiverr</a>
+        <a class="btn btn-ghost" href="https://www.upwork.com/freelancers/~015f484bf5c3821f70?viewMode=1" target="_blank" rel="noopener">Upwork</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> Muhammad Azhar — Built with HTML, CSS &amp; JS.</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Typing terminal effect
+  const lines = [
+    { type:'cmd', text:'python analyze_sales.py' },
+    { type:'out', text:'Loading dataset... 2,480 rows' },
+    { type:'out', text:'Cleaning missing values...' },
+    { type:'ok',  text:'✓ Report generated: sales_summary.pdf' },
+    { type:'cmd', text:'python scrape_listings.py --site demo' },
+    { type:'out', text:'Selenium: launching browser...' },
+    { type:'ok',  text:'✓ 312 listings exported to CSV' },
+  ];
+  const body = document.getElementById('termBody');
+  let li = 0, ci = 0;
+
+  function typeLine(){
+    if(li >= lines.length){
+      setTimeout(()=>{ body.innerHTML=''; li=0; ci=0; typeLine(); }, 2200);
+      return;
+    }
+    const line = lines[li];
+    if(ci === 0){
+      const div = document.createElement('div');
+      div.id = 'activeLine';
+      if(line.type === 'cmd'){
+        div.innerHTML = '<span class="prompt">$</span> ';
+      } else if(line.type === 'ok'){
+        div.classList.add('ok');
+      } else {
+        div.classList.add('out');
+      }
+      body.appendChild(div);
+    }
+    const div = document.getElementById('activeLine');
+    if(ci <= line.text.length){
+      const prefix = line.type === 'cmd' ? '<span class="prompt">$</span> ' : '';
+      div.innerHTML = prefix + line.text.slice(0, ci) + '<span class="caret"></span>';
+      ci++;
+      setTimeout(typeLine, line.type === 'cmd' ? 45 : 18);
+    } else {
+      div.innerHTML = (line.type === 'cmd' ? '<span class="prompt">$</span> ' : '') + line.text;
+      li++; ci = 0;
+      setTimeout(typeLine, 350);
+    }
+  }
+  typeLine();
+</script>
+
+</body>
+</html>
