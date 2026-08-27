@@ -1,0 +1,11 @@
+customer,city,category,quantity,unit_price
+Ali,Lahore,Electronics,2,45000
+Sara,Lahore,Clothing,3,2500
+Hamza,Islamabad,Electronics,,52000
+Ayesha,Karachi,Home,4,3200
+Bilal,Lahore,Clothing,2,2800
+Bilal,Lahore,Clothing,2,2800
+Usman,Multan,,5,1200
+Hina,Rawalpindi,Electronics,-1,18000
+Zain,Karachi,Home,3,3500
+Maryam,,Clothing,2,3100
