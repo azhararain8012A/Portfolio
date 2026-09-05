@@ -16,9 +16,60 @@
 @media(max-width:780px){.nav{flex-wrap:wrap;min-height:74px;gap:0}.brand{font-size:1.1rem}.nav-links{width:100%;padding:10px 0 20px;flex-wrap:wrap;gap:15px 23px}.js .nav-links{display:none}.js .nav-links.open{display:flex}.js .menu{display:block}.hero-topline{padding-top:22px;font-size:.75rem;letter-spacing:.03em}.hero-grid{grid-template-columns:1fr;padding-top:45px;gap:20px}.hero-intro{max-width:580px}h1{font-size:clamp(4.5rem,13vw,6.8rem);margin-top:25px}.hero-copy{font-size:1.0625rem}.hero-role{font-size:1.5rem}.visual{width:min(470px,100%);margin:auto;aspect-ratio:1/1;max-height:480px}.visual img{width:108%}.visual-caption{bottom:0}.hero-bottom{align-items:start}.tool-list{gap:14px 20px;max-width:360px}.principles .wrap{font-size:.8125rem;letter-spacing:.06em;flex-wrap:wrap;justify-content:center;gap:10px 20px}.section{padding:72px 0}.about-grid,.skills-grid,.learning-grid{grid-template-columns:1fr;gap:32px}.section-heading{align-items:start;flex-direction:column;gap:20px}.projects{grid-template-columns:1fr}.featured{grid-column:auto;grid-template-columns:1fr;gap:28px;padding:27px}.project{padding:27px}.project h3{margin-top:24px}.featured h3{font-size:1.8rem}.skills-grid .body-copy{max-width:100%}.learning{padding-top:0}.learning-items{gap:25px}.contact{padding-bottom:65px}.footer{padding-bottom:75px}.motion-toggle{bottom:13px;right:15px}}
 @media(max-width:430px){.wrap{width:calc(100% - 36px)}.hero-topline span:last-child{max-width:130px;text-align:right}.eyebrow{font-size:.75rem;letter-spacing:.04em}h1{font-size:clamp(3.8rem,16vw,5rem)}.hero-role{font-size:1.25rem}.actions{gap:10px}.button{padding:12px 16px;gap:15px;font-size:.875rem}.hero-bottom{flex-direction:column;gap:17px}.visual-tag{font-size:.75rem;padding:6px 8px}.visual-caption{left:6%;right:6%;font-size:.75rem}.facts{flex-direction:column;gap:15px}.facts span{display:inline;margin-right:12px}.learning-items{grid-template-columns:1fr}.project-footer{align-items:start;flex-wrap:wrap;gap:10px}.contact .actions{flex-direction:column;align-items:stretch}.brand-mark{padding:6px 8px}.hero-availability{font-size:.8125rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.motion .reveal{opacity:1;transform:none}}
+
+/* Opening experience: isolated from the main portfolio. */
+html.intro-open{overflow:hidden}
+.welcome-intro{position:fixed;inset:0;width:100%;max-width:none;height:100%;height:100dvh;max-height:none;margin:0;padding:0;border:0;color:var(--ink);background:#05080d;overflow:auto;overscroll-behavior:contain}
+.welcome-intro::backdrop{background:#05080d}
+.welcome-intro[open]{display:grid;place-items:center;isolation:isolate}
+.intro-background{position:absolute;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(ellipse at 30% 50%,#1b718527,transparent 50%),radial-gradient(ellipse at 78% 65%,#ad66351a,transparent 48%)}
+.intro-background:before{content:'';position:absolute;inset:0;background-image:radial-gradient(#b6e6ee66 1px,transparent 1px),radial-gradient(#e8ac8040 1px,transparent 1px);background-size:113px 137px,191px 173px;background-position:17px 23px,83px 69px;mask-image:radial-gradient(ellipse,#000,transparent 80%);animation:intro-drift 12s linear both}
+.intro-background:after{content:'';position:absolute;left:12%;right:12%;top:75%;height:1px;background:linear-gradient(90deg,transparent,#8fd9e477,#e8ac8077,transparent);box-shadow:0 0 35px #8fd9e422}
+.intro-orbit{position:absolute;left:50%;top:50%;width:min(72vw,750px);aspect-ratio:1;border:1px solid #8fd9e426;border-radius:50%;transform:translate(-50%,-50%);animation:intro-orbit 8s ease-out both}
+.intro-orbit.second{width:min(90vw,1050px);border-color:#e8ac8026;animation-delay:.15s}
+.intro-skip{position:absolute;right:30px;top:25px;z-index:5;cursor:pointer;border:1px solid #49505a;background:#090d14;color:#d1d9df;border-radius:30px;padding:10px 18px;font-size:.875rem}
+.intro-top{position:absolute;left:30px;top:35px;font:400 .75rem var(--mono);letter-spacing:.15em;color:var(--cyan)}
+.intro-sequence{position:absolute;inset:0;display:grid;place-content:center;text-align:center;pointer-events:none;animation:intro-sequence 3s both}
+.intro-sequence p{font:400 .8125rem var(--mono);letter-spacing:.24em;color:var(--cyan);margin-bottom:22px}
+.intro-sequence strong{font:500 clamp(2.4rem,8vw,7rem)/1.15 var(--display);letter-spacing:-.05em;color:var(--ink)}
+.intro-sequence strong span{color:var(--copper)}
+.intro-sequence small{font:400 .8125rem var(--mono);letter-spacing:.2em;color:#b5c2cb;margin-top:24px}
+.intro-finale{width:min(1160px,calc(100% - 80px));display:grid;grid-template-columns:.85fr 1.15fr;gap:45px;align-items:center;padding:100px 0;animation:intro-finale 1.3s 2.7s both}
+.intro-art{min-width:0;position:relative;aspect-ratio:1}
+.intro-art img{width:115%;max-width:none;height:auto;display:block;margin-left:-7%;mix-blend-mode:lighten;mask-image:radial-gradient(ellipse,#000 38%,transparent 72%)}
+.intro-text .intro-eyebrow{font:400 .8125rem var(--mono);letter-spacing:.3em;color:#c6d1d8;margin-bottom:22px}
+.intro-name{font:400 clamp(3.6rem,7.8vw,7.5rem)/.97 Georgia,serif;letter-spacing:-.05em;margin:0;color:var(--ink)}
+.intro-name span{display:block;color:var(--copper)}
+.intro-portfolio{font:400 clamp(.875rem,1.5vw,1.125rem) var(--mono);letter-spacing:.36em;color:var(--cyan);margin:24px 0}
+.intro-manifesto{font-size:1rem;color:#b7c1cb;max-width:430px;margin-bottom:28px}
+.intro-enter{cursor:pointer;background:transparent;color:var(--ink);border:1px solid #bd875e;border-radius:30px;padding:14px 24px;font:500 .875rem var(--body);transition:background .2s,color .2s}
+.intro-enter:hover{background:var(--copper);color:#0b0c10}
+.intro-bottom{position:absolute;left:30px;right:30px;bottom:24px;display:flex;justify-content:space-between;gap:18px;font:400 .75rem var(--mono);color:#a1aeba;letter-spacing:.07em}
+.welcome-intro.is-leaving{animation:intro-leave .55s ease both;pointer-events:none}
+@keyframes intro-drift{to{transform:translateY(-18px)}}
+@keyframes intro-orbit{from{opacity:0;transform:translate(-50%,-50%) scale(.12)}30%{opacity:1}to{opacity:.15;transform:translate(-50%,-50%) scale(1.3)}}
+@keyframes intro-sequence{0%{opacity:0;transform:scale(.9)}22%,65%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.07);visibility:hidden}}
+@keyframes intro-finale{from{opacity:0;transform:translateY(25px);visibility:hidden}to{opacity:1;transform:none;visibility:visible}}
+@keyframes intro-leave{to{opacity:0;transform:scale(1.025)}}
+@media(max-width:700px){.intro-top{left:20px;top:31px;font-size:.75rem;letter-spacing:.04em}.intro-skip{right:18px;top:18px;padding:8px 13px}.intro-finale{width:calc(100% - 40px);grid-template-columns:1fr;text-align:center;gap:0;padding:85px 0 80px}.intro-art{width:min(240px,58vw);margin:auto;order:2;max-height:220px}.intro-text{order:1}.intro-name{font-size:clamp(3.2rem,12vw,5.1rem)}.intro-text .intro-eyebrow{margin-bottom:16px;font-size:.75rem}.intro-portfolio{margin:18px 0}.intro-manifesto{margin:0 auto 22px;font-size:.9375rem}.intro-bottom{left:20px;right:20px;font-size:.75rem;letter-spacing:0}.intro-bottom span:last-child{display:none}.intro-sequence strong{font-size:clamp(2.2rem,10vw,4rem)}}
+@media(max-height:650px){.intro-art{display:none}.intro-finale{grid-template-columns:1fr;width:min(600px,calc(100% - 40px));padding:85px 0 75px;text-align:center}.intro-name{font-size:clamp(2.8rem,10vh,4rem)}.intro-name span{display:inline}.intro-text .intro-eyebrow{margin-bottom:14px}.intro-portfolio{margin:14px 0}.intro-manifesto{margin:0 auto 18px}.intro-bottom{position:static;align-self:end;padding:0 20px 15px;width:100%}.intro-top{font-size:.75rem}}
+@media(prefers-reduced-motion:reduce){.intro-sequence{display:none}.intro-finale{opacity:1;transform:none;visibility:visible}.welcome-intro.is-leaving{opacity:0}}
 </style>
 </head>
 <body>
+
+<dialog class="welcome-intro" aria-labelledby="intro-name" aria-describedby="intro-description">
+  <div class="intro-background" aria-hidden="true"><div class="intro-orbit"></div><div class="intro-orbit second"></div></div>
+  <span class="intro-top" aria-hidden="true">MA / PORTFOLIO</span>
+  <button class="intro-skip" type="button" autofocus>Skip intro ↗</button>
+  <div class="intro-sequence" aria-hidden="true"><p>CURIOSITY MEETS POSSIBILITY</p><strong>DATA. CODE.<br><span>INTELLIGENCE.</span></strong><small>AN INTRODUCTION TO MY WORLD</small></div>
+  <div class="intro-finale">
+    <div class="intro-art" aria-hidden="true"></div>
+    <div class="intro-text"><p class="intro-eyebrow">WELCOME TO MY WORLD</p><h2 class="intro-name" id="intro-name">Muhammad <span>Azhar.</span></h2><p class="intro-portfolio">THE PORTFOLIO</p><p class="intro-manifesto" id="intro-description">Human curiosity. Practical code. New possibilities.</p><button class="intro-enter" type="button">Explore my portfolio ↗</button></div>
+  </div>
+  <div class="intro-bottom"><span>PYTHON · DATA · APPLIED AI</span><span>CONTINUES AUTOMATICALLY</span></div>
+</dialog>
+
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav-shell"><div class="wrap nav"><a class="brand" href="#main" aria-label="Muhammad Azhar home"><span class="brand-mark">MA</span> MUHAMMAD <span>AZHAR</span></a><button class="menu" aria-controls="navigation" aria-expanded="false" type="button">Menu</button><nav class="nav-links" id="navigation" aria-label="Main navigation"><a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Capabilities</a><a href="#education">Learning</a><a class="nav-cta" href="#contact">Let's connect ↗</a></nav></div></header>
 <main id="main">
@@ -83,6 +134,49 @@
   }
   document.getElementById('year').textContent = new Date().getFullYear();
   root.classList.add('js');
+})();
+</script>
+
+<script>
+(() => {
+  const intro = document.querySelector('.welcome-intro');
+  if (!intro || typeof intro.showModal !== 'function' || (location.hash && location.hash !== '#main')) return;
+  const root = document.documentElement;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const source = document.querySelector('.visual img');
+  if (source) {
+    const art = source.cloneNode(false);
+    art.alt = '';
+    art.removeAttribute('fetchpriority');
+    intro.querySelector('.intro-art').append(art);
+  }
+  let automatic, transition, finished = false;
+  function finish() {
+    clearTimeout(automatic); clearTimeout(transition);
+    root.classList.remove('intro-open');
+    if (intro.open) intro.close();
+  }
+  function enter() {
+    if (finished) return;
+    finished = true;
+    clearTimeout(automatic);
+    if (reduced.matches) finish();
+    else {intro.classList.add('is-leaving'); transition = setTimeout(finish, 560);}
+  }
+  intro.querySelector('.intro-skip').addEventListener('click', enter);
+  intro.querySelector('.intro-enter').addEventListener('click', enter);
+  intro.addEventListener('cancel', event => {event.preventDefault(); enter();});
+  intro.addEventListener('close', () => {
+    finished = true;
+    clearTimeout(automatic); clearTimeout(transition);
+    root.classList.remove('intro-open');
+    document.querySelector('.brand').focus({preventScroll:true});
+  });
+  // On history restoration, return directly to the portfolio instead of replaying.
+  window.addEventListener('pagehide', () => {finished = true; finish();});
+  try {intro.showModal(); root.classList.add('intro-open');}
+  catch {return;}
+  automatic = setTimeout(enter, 9500);
 })();
 </script>
 </body>
